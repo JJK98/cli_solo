@@ -1,4 +1,4 @@
-package org.example;
+package org.example;//package org.example;
 
 import org.example.Article.Article;
 
@@ -32,8 +32,27 @@ public class Main {
             }
             if (ord.equals("목록")){
                 System.out.println("번호 / 제목 / 내용\n ---------------------");
-                for (int i = 0; i < ArticleList.size(); i++)
-                    System.out.println(ArticleList.get(i));
+                for (int i = ArticleList.size()-1; i >= 0; i--) {
+                    Article article = ArticleList.get(i);
+                    System.out.printf("%d / %s / %s \n", article.getId(), article.getsub(), article.getcon());
+                }
+            }
+            else if(ord.contains("삭제")){
+                String[] del = ord.split("\\?");
+                String[] deli = del[1].split("=");
+                String key= deli[0];
+                String value = deli[1];
+                String[] indexs = value.split(",");
+
+                for (String i:indexs){
+                    for(int j = 0; j < ArticleList.size(); j++){
+                        Article article = ArticleList.get(j);
+                        if(article.getId() == Integer.parseInt(i)) {
+                            ArticleList.remove(article);
+                            System.out.printf("%d번 게시물이 삭제되었습니다.\n", article.getId());
+                        }
+                    }
+                }
             }
         }
         sc.close();
