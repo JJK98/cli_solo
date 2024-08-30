@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.Article.Article;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -10,6 +13,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String ord ;
         int lastid = 0;
+        ArrayList<Article> ArticleList = new ArrayList<>();
         while (true) {
             System.out.print("명령) ");
             ord = sc.nextLine().trim();
@@ -23,7 +27,15 @@ public class Main {
                 System.out.print("제목 : ");
                 String con = sc.nextLine().trim();
                 System.out.printf("%d번 게시글이 등록되었습니다.\n",lastid);
+                Article article =new Article(lastid, sub, con);
+                ArticleList.add(article);
+            }
+            if (ord.equals("목록")){
+                System.out.println("번호 / 제목 / 내용\n ---------------------");
+                for (int i = 0; i < ArticleList.size(); i++)
+                    System.out.println(ArticleList.get(i));
             }
         }
+        sc.close();
     }
 }
