@@ -11,47 +11,54 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== 게시판 앱 ===");
         Scanner sc = new Scanner(System.in);
-        String ord ;
+        String ord;
         int lastid = 0;
         ArrayList<Article> ArticleList = new ArrayList<>();
         while (true) {
             System.out.print("명령) ");
             ord = sc.nextLine().trim();
-            if (ord.equals("종료")){
+            if (ord.equals("종료")) {
                 break;
             }
-            if (ord.equals("등록")){
-                lastid ++;
+            if (ord.equals("등록")) {
+                lastid++;
                 System.out.print("제목 : ");
                 String sub = sc.nextLine().trim();
                 System.out.print("제목 : ");
                 String con = sc.nextLine().trim();
-                System.out.printf("%d번 게시글이 등록되었습니다.\n",lastid);
-                Article article =new Article(lastid, sub, con);
+                System.out.printf("%d번 게시글이 등록되었습니다.\n", lastid);
+                Article article = new Article(lastid, sub, con);
                 ArticleList.add(article);
             }
-            if (ord.equals("목록")){
+            if (ord.equals("목록")) {
                 System.out.println("번호 / 제목 / 내용\n ---------------------");
-                for (int i = ArticleList.size()-1; i >= 0; i--) {
+                for (int i = ArticleList.size() - 1; i >= 0; i--) {
                     Article article = ArticleList.get(i);
                     System.out.printf("%d / %s / %s \n", article.getId(), article.getsub(), article.getcon());
                 }
-            }
-            else if(ord.contains("삭제")){
+            } else if (ord.contains("삭제")) {
                 String[] del = ord.split("\\?");
+                if (del.length == 1) continue;
+
                 String[] deli = del[1].split("=");
-                String key= deli[0];
+                String key = deli[0];
                 String value = deli[1];
                 String[] indexs = value.split(",");
-
-                for (String i:indexs){
-                    for(int j = 0; j < ArticleList.size(); j++){
-                        Article article = ArticleList.get(j);
-                        if(article.getId() == Integer.parseInt(i)) {
+                Article article;
+                for (String i : indexs) {
+                    int count=0;
+                    for (int j = 0; j < ArticleList.size(); j++) {
+                        article = ArticleList.get(j);
+                        if (article.getId() == Integer.parseInt(i)) {
                             ArticleList.remove(article);
                             System.out.printf("%d번 게시물이 삭제되었습니다.\n", article.getId());
                         }
+                        count++;
                     }
+                    if (ArticleList.size() == count) {
+                        System.out.printf("%d번 게시물은 존재하지 않습니다.\n", Integer.parseInt(i));
+                    }
+
                 }
             }
         }
