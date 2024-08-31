@@ -24,7 +24,7 @@ public class Main {
                 lastid++;
                 System.out.print("제목 : ");
                 String sub = sc.nextLine().trim();
-                System.out.print("제목 : ");
+                System.out.print("내용 : ");
                 String con = sc.nextLine().trim();
                 System.out.printf("%d번 게시글이 등록되었습니다.\n", lastid);
                 Article article = new Article(lastid, sub, con);
@@ -52,6 +52,7 @@ public class Main {
                         if (article.getId() == Integer.parseInt(i)) {
                             ArticleList.remove(article);
                             System.out.printf("%d번 게시물이 삭제되었습니다.\n", article.getId());
+                            j--;
                         }
                         count++;
                     }
@@ -61,6 +62,7 @@ public class Main {
 
                 }
             }
+
         }
         sc.close();
     }
