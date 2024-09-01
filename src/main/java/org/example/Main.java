@@ -62,6 +62,32 @@ public class Main {
 
                 }
             }
+            else if (ord.contains("수정")){
+                String[] upd = ord.split("\\?");
+                if (upd.length == 1) continue;
+
+                String[] upda = upd[1].split("=");
+                String key = upda[0];
+                String value = upda[1];
+                String[] indexs = value.split(",");
+                Article article;
+                for (String i : indexs) {
+                    for (int j = 0; j < ArticleList.size(); j++) {
+                        article = ArticleList.get(j);
+                        if (article.getId() == Integer.parseInt(i)) {
+                            System.out.printf("제목(기존) : %s\n", article.getsub());
+                            System.out.print("제목 : ");
+                            String modifiedsub = sc.nextLine().trim();
+                            article.setsub(modifiedsub);
+                            System.out.printf("내용(기존) : %s\n", article.getcon());
+                            System.out.print("내용 : ");
+                            String modifiedcon = sc.nextLine().trim();
+                            article.setcon(modifiedcon);
+                            System.out.printf("%d번 게시물이 수정되었습니다.\n", article.getId());
+                        }
+                    }
+                }
+            }
 
         }
         sc.close();

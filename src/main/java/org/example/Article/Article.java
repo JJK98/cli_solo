@@ -21,4 +21,11 @@ public class Article {
     public String getcon(){
         return this.con;
     }
+    public void setsub(String modifiedsub){
+        this.sub = modifiedsub;
+    }
+    public void setcon(String modifiedcon){
+        this.con = modifiedcon;
+    }
+
 }
