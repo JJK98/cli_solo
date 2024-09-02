@@ -9,22 +9,20 @@ public class Article {
         this.sub = sub;
         this.con = con;
     }
-//    public String toString() {
-//        return id + " / " + sub + " / " + con;
-//    }
+
     public int getId(){
         return this.id;
     }
-    public String getsub(){
+    public String getSub(){
         return this.sub;
     }
-    public String getcon(){
+    public String getCon(){
         return this.con;
     }
-    public void setsub(String modifiedsub){
+    public void setSub(String modifiedsub){
         this.sub = modifiedsub;
     }
-    public void setcon(String modifiedcon){
+    public void setCon(String modifiedcon){
         this.con = modifiedcon;
     }
 
